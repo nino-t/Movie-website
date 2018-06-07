@@ -4,7 +4,7 @@ import MovieItem from './MovieItem'
 
 export default class PanelMovie extends React.Component {
 	render() {		
-		let { movies } = this.props
+		let { movies, personalName } = this.props
 		if (movies) {
 			movies = movies.slice(0, 4)
 		}
@@ -12,7 +12,7 @@ export default class PanelMovie extends React.Component {
 		return (
 			<div className="movie-panel">
 				<div className="movie-panel-title">
-					<h3 className="pull-left">Skywalker Movie's</h3>
+					<h3 className="pull-left">{personalName} Movie's</h3>
 					<span className="pull-right">
 						<a href="#" className="link-more">See More</a>
 					</span>
