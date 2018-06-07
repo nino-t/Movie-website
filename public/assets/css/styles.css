@@ -155,7 +155,7 @@
 	color:#84817a; 
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (max-width: 768px) {
     .movie-item {
         margin-bottom: 25px !important;
     }
