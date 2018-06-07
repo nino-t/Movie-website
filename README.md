@@ -1,5 +1,5 @@
 ## Movie website
-Movie website created using react, webpack and babel.
+Movie website created using react, webpack, babel and open API https://swapi.co/.
 <br>
 ![alt text](https://github.com/nino-t/Movie-website/blob/master/demo/demo.png)
 
