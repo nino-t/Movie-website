@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { Well } from '../styledComponents'
+
 export default class PanelMovieRelated extends React.Component {
 	constructor(props) {
 	  super(props);
@@ -30,50 +32,66 @@ export default class PanelMovieRelated extends React.Component {
 		return desc
 	}	
 
-	render() {
+	renderWrapDown(){
 		const { movie } = this.state
 
 		return (
-			<div className="panel-another">	
-				{
-					(movie) &&
-					<div>
-						<div className="panel-another-title">
-							<h3>Related Another Movie's</h3>
-						</div>
-						<div className="panel-another-body">
-							<div className="wrap-well-heading">
-								<h4>{movie.title}</h4>
-								<table className="table me-table">
-									<tbody>
-										<tr>
-											<td width="35%">Director:</td>
-											<td>{movie.director}</td>
-										</tr>
-										<tr>
-											<td width="35%">Producer:</td>
-											<td>{movie.producer}</td>
-										</tr>
-										<tr>
-											<td width="35%">Relase Date:</td>
-											<td>{movie.release_date}</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-							<div className="wrap-well-body">
-								<p>{ this.renderDesc(movie.opening_crawl) }</p>
+			<div>
+				<div className="panel-another-title">
+					<h3>Related Another Movie's</h3>
+				</div>
+				<div className="panel-another-body">
+					<div className="wrap-well-body">
+						<p>{ this.renderDesc(movie.opening_crawl) }</p>
 
-								<span className="pull-right">
-									<a href="#" className="link-more">See More</a>
-								</span>
-								<div className="clearfix"></div>						
-							</div>					
-						</div>
-					</div>
+						<span className="pull-right">
+							<a href="#" className="link-more">See More</a>
+						</span>
+						<div className="clearfix"></div>						
+					</div>					
+				</div>
+			</div>			
+		)
+	}
+
+	renderWrapUp(){
+		const { movie } = this.state
+
+		return (
+			<div className="wrap-well-heading">
+				<h4>{movie.title}</h4>
+				<table className="table me-table">
+					<tbody>
+						<tr>
+							<td width="35%">Director:</td>
+							<td>{movie.director}</td>
+						</tr>
+						<tr>
+							<td width="35%">Producer:</td>
+							<td>{movie.producer}</td>
+						</tr>
+						<tr>
+							<td width="35%">Relase Date:</td>
+							<td>{movie.release_date}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		)
+	}
+
+	render() {
+		const { movie } = this.state
+		return (
+			<div>
+				{
+					(movie) && 
+						 <Well 
+							WrapUp={this.renderWrapUp()}
+							WrapDown={this.renderWrapDown()} />
 				}
 			</div>
-		);
+		)
 	}
 }
 

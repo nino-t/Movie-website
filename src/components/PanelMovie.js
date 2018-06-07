@@ -1,4 +1,5 @@
 import React from 'react'
+import { Flex } from '../styledComponents'
 
 import MovieItem from './MovieItem'
 
@@ -10,7 +11,7 @@ export default class PanelMovie extends React.Component {
 		}
 
 		return (
-			<div className="movie-panel">
+			<div>
 				<div className="movie-panel-title">
 					<h3 className="pull-left">{personalName} Movie's</h3>
 					<span className="pull-right">
@@ -20,14 +21,14 @@ export default class PanelMovie extends React.Component {
 				</div>
 
 				<div className="movie-panel-body">
-					<div className="row">
+					<Flex>
 						{
 							(movies) &&
 								movies.map((movie, index) => (
 									<MovieItem key={index} index={index} movie={movie} />
 								))
 						}
-					</div>
+					</Flex>
 				</div>
 			</div>
 		);

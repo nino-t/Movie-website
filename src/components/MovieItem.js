@@ -1,4 +1,5 @@
 import React from 'react'
+import { ContentItem, FlexItem } from '../styledComponents'
 
 export default class MovieItem extends React.Component {
 	constructor(props) {
@@ -43,33 +44,38 @@ export default class MovieItem extends React.Component {
 		return backgroundColor
 	}
 
+	renderDirector(director){
+		return (
+			<div className="wrap-director">
+				<strong>Director:</strong>
+				<p>{director}</p>
+			</div>
+		)
+	}
+
+	renderRelase(release_date){
+		return (
+			<div className="wrap-release">
+				<strong>Release:</strong>
+				<p>{release_date}</p>
+			</div>
+		)
+	}	
+
 	render() {
 		const { movie } = this.state
 		const { index } = this.props
 
 		return (
-			<div className="col-xs-6 col-sm-6 col-md-3 col-lg-3 movie-item">				
-				<div className="movie-item-group">
-					<div className="movie-item-thumb" style={{ backgroundColor: this.renderBackground(index) }}>
-						<center>
-							<img src="./assets/img/play.png" />
-						</center>
-					</div>
-					<div className="movie-item-content">
-						<div className="wrap-movie-title">
-							<h4>{this.renderTitle(movie.title)}</h4>
-						</div>
-						<div className="wrap-director">
-							<strong>Director:</strong>
-							<p>{movie.director}</p>
-						</div>
-						<div className="wrap-release">
-							<strong>Release:</strong>
-							<p>{movie.release_date}</p>
-						</div>						
-					</div>
-				</div>
-			</div>
+			<FlexItem flex={1}>
+				<ContentItem
+					title={this.renderTitle(movie.title)}
+					contentCenter={this.renderDirector(movie.director)}
+					contentBottom={this.renderRelase(movie.release_date)}
+					backgroundColor={this.renderBackground(index)}
+					srcThumb="./assets/img/play.png" />
+
+			</FlexItem>
 		);
 	}
 }
