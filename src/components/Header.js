@@ -10,7 +10,7 @@ export default class Header extends React.Component {
 				paddingVertical='10px'
 				paddingHorizontal='0px'>
 
-				<FlexItem flex={2}>
+				<FlexItem flex={1}>
 					<Image 
 						src="./assets/img/personal.png" 
 						paddingVertical="80px"
@@ -18,7 +18,7 @@ export default class Header extends React.Component {
 						backgroundColor= '#576574' />
 				</FlexItem>
 
-				<FlexItem flex={12}>
+				<FlexItem flex={1}>
 					<table className="table me-table">
 						<tbody>
 							<tr>
