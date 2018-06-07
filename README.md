@@ -1,5 +1,5 @@
 ## Movie website
-Movie website created using react, react-dom, webpack and babel.
+Movie website created using react, webpack and babel.
 <br>
 ![alt text](https://github.com/nino-t/Movie-website/blob/master/demo/demo.png)
 
