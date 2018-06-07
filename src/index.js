@@ -36,11 +36,11 @@ class App extends React.Component {
 				<Header people={people} />
 
 				<div className="row">
-					<div className="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+					<div className="col-xs-12 col-sm-8 col-md-8 col-lg-8">
 						<PanelMovie personalName={people.name} movies={people.films} />
 					</div>
 
-					<div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+					<div className="col-xs-12 col-sm-4 col-md-4 col-lg-4">
 						{
 							(people.films) &&
 							<PanelMovieRelated movie={people.films[people.films.length - 1]} />
