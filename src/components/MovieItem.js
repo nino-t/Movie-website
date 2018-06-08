@@ -1,5 +1,5 @@
 import React from 'react'
-import { ContentItem, FlexItem } from '../styledComponents'
+import { ContentItem, FlexItem, BoxItem } from '../styledComponents'
 
 export default class MovieItem extends React.Component {
 	constructor(props) {
@@ -17,17 +17,15 @@ export default class MovieItem extends React.Component {
 	    	this.setState({
 	    		movie: data
 	    	})
-
-	    	console.log('Movie', data);
 	    })
 	    .catch((error) => {
-	    	console.error(error);
+	    	console.error('Error', error);
 	    })
 	}
 
 	renderTitle(title){
 		if (title && title.length > 1) {
-			title = title.substr(0, 16) + '...'
+			title = title.substr(0, 20) + '...'
 		}
 
 		return title
@@ -46,7 +44,7 @@ export default class MovieItem extends React.Component {
 
 	renderDirector(director){
 		return (
-			<div className="wrap-director">
+			<div>
 				<strong>Director:</strong>
 				<p>{director}</p>
 			</div>
@@ -55,7 +53,7 @@ export default class MovieItem extends React.Component {
 
 	renderRelase(release_date){
 		return (
-			<div className="wrap-release">
+			<div>
 				<strong>Release:</strong>
 				<p>{release_date}</p>
 			</div>
@@ -67,14 +65,15 @@ export default class MovieItem extends React.Component {
 		const { index } = this.props
 
 		return (
-			<FlexItem flex={1}>
-				<ContentItem
-					title={this.renderTitle(movie.title)}
-					contentCenter={this.renderDirector(movie.director)}
-					contentBottom={this.renderRelase(movie.release_date)}
-					backgroundColor={this.renderBackground(index)}
-					srcThumb="./assets/img/play.png" />
-
+			<FlexItem md={1} sm="50%" xs="50%">
+				<BoxItem index={index} responsive>
+					<ContentItem
+						title={this.renderTitle(movie.title)}
+						contentCenter={this.renderDirector(movie.director)}
+						contentBottom={this.renderRelase(movie.release_date)}
+						backgroundColor={this.renderBackground(index)}
+						srcThumb="./assets/img/play.png" />
+				</BoxItem>
 			</FlexItem>
 		);
 	}

@@ -37,12 +37,17 @@ class App extends React.Component {
 			<Container>
 				<Header people={people} /> 
 
+				<br />
+				<br />
+
 				<Flex>
-					<FlexItem flex={9}>
-						<PanelMovie personalName={people.name} movies={people.films} />
+					<FlexItem md={9} sm="50%" xs="100%">
+						<div className="md-padding">
+							<PanelMovie personalName={people.name} movies={people.films} />
+						</div>
 					</FlexItem>
 
-					<FlexItem flex={3}>
+					<FlexItem md={3} sm="50%" xs="100%">
 						{
 							(people.films) &&
 							<PanelMovieRelated movie={people.films[people.films.length - 1]} />

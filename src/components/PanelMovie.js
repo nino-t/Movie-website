@@ -1,9 +1,22 @@
 import React from 'react'
-import { Flex } from '../styledComponents'
+import { Flex, TitleOfContent, BoxItem } from '../styledComponents'
 
 import MovieItem from './MovieItem'
 
 export default class PanelMovie extends React.Component {
+	renderTitle(personalName){
+		if (personalName){
+			let name = personalName.split(" ")
+			let resultName = name[0]
+
+			if (name[name.length - 1]) {
+				resultName = name[name.length - 1]
+			}
+
+			return resultName
+		}
+	}
+
 	render() {		
 		let { movies, personalName } = this.props
 		if (movies) {
@@ -12,15 +25,13 @@ export default class PanelMovie extends React.Component {
 
 		return (
 			<div>
-				<div className="movie-panel-title">
-					<h3 className="pull-left">{personalName} Movie's</h3>
-					<span className="pull-right">
-						<a href="#" className="link-more">See More</a>
-					</span>
-					<div className="clearfix"></div>
-				</div>
+				<BoxItem>
+					<TitleOfContent
+						title={this.renderTitle(personalName)+" Movie's"}
+						linkToMore="#" />
+				</BoxItem>
 
-				<div className="movie-panel-body">
+				<div>
 					<Flex>
 						{
 							(movies) &&
