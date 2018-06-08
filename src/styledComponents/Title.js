@@ -42,7 +42,7 @@ export const TitleOfContent = (props) => (
 
 		{
 			(props.linkToMore) &&
-				<Link href="#" linkRight>
+				<Link href="#" linkRight style={{ marginTop: '7px' }}>
 					See More
 				</Link>
 		}

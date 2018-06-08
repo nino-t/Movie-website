@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, TitleOfContent, BoxItem } from '../styledComponents'
+import { Flex, TitleOfContent, BoxItem, LoadingProgres } from '../../../styledComponents'
 
 import MovieItem from './MovieItem'
 
@@ -21,26 +21,31 @@ export default class PanelMovie extends React.Component {
 		let { movies, personalName } = this.props
 		if (movies) {
 			movies = movies.slice(0, 4)
+		}else{
+			movies = Array.apply(null, Array(4))
 		}
 
 		return (
 			<div>
 				<BoxItem>
-					<TitleOfContent
-						title={this.renderTitle(personalName)+" Movie's"}
-						linkToMore="#" />
+					{
+						(personalName) ?
+							<TitleOfContent
+								title={this.renderTitle(personalName)+" Movie's"}
+								linkToMore="#" />
+							:
+							<LoadingProgres color='#ecf0f1' />
+					}
 				</BoxItem>
 
-				<div>
-					<Flex>
-						{
-							(movies) &&
-								movies.map((movie, index) => (
-									<MovieItem key={index} index={index} movie={movie} />
-								))
-						}
-					</Flex>
-				</div>
+				<Flex>
+					{
+						(movies) &&
+							movies.map((movie, index) => (
+								<MovieItem key={index} index={index} movie={movie} />
+							))
+					}
+				</Flex>
 			</div>
 		);
 	}

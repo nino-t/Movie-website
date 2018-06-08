@@ -1,5 +1,6 @@
 import React from 'react'
-import { ContentItem, FlexItem, BoxItem } from '../styledComponents'
+import { ProgressiveSingle } from '../../../hoc'
+import { ContentItem, FlexItem, BoxItem } from '../../../styledComponents'
 
 export default class MovieItem extends React.Component {
 	constructor(props) {
@@ -10,17 +11,21 @@ export default class MovieItem extends React.Component {
 	  }
 	}
 
-	componentWillMount() {
-		fetch(this.props.movie)
-	    .then((response) => response.json())
-	    .then((data) => {
-	    	this.setState({
-	    		movie: data
-	    	})
-	    })
-	    .catch((error) => {
-	    	console.error('Error', error);
-	    })
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.movie) {
+			fetch(nextProps.movie)
+		    .then((response) => response.json())
+		    .then((data) => {
+		    	this.setState({
+		    		movie: data
+		    	})
+		    })
+		    .catch((error) => {
+		    	console.error('Error', error);
+		    })
+		}
+
+		return true;
 	}
 
 	renderTitle(title){
@@ -31,12 +36,27 @@ export default class MovieItem extends React.Component {
 		return title
 	}
 
-	renderBackground(id){
+	renderBackground(id, title){
 		let backgroundColor = '#e67e22'
 
 		var result = id % 2
 		if (result == 0) {
 			backgroundColor = '#9b59b6'
+		}
+
+		if (!title) {
+			return '#bdc3c7';
+		}
+
+		return backgroundColor
+	}
+
+	renderBackgroundHover(id){
+		let backgroundColor = 'rgba(230, 126, 34,0.7)'
+
+		var result = id % 2
+		if (result == 0) {
+			backgroundColor = 'rgba(155, 89, 182,0.7)'
 		}
 
 		return backgroundColor
@@ -46,7 +66,7 @@ export default class MovieItem extends React.Component {
 		return (
 			<div>
 				<strong>Director:</strong>
-				<p>{director}</p>
+				<p>{ProgressiveSingle(director)}</p>
 			</div>
 		)
 	}
@@ -55,7 +75,7 @@ export default class MovieItem extends React.Component {
 		return (
 			<div>
 				<strong>Release:</strong>
-				<p>{release_date}</p>
+				<p>{ProgressiveSingle(release_date)}</p>
 			</div>
 		)
 	}	
@@ -71,7 +91,8 @@ export default class MovieItem extends React.Component {
 						title={this.renderTitle(movie.title)}
 						contentCenter={this.renderDirector(movie.director)}
 						contentBottom={this.renderRelase(movie.release_date)}
-						backgroundColor={this.renderBackground(index)}
+						backgroundColor={this.renderBackground(index, movie.title)}
+						backgroundColorHover={this.renderBackgroundHover(index)}
 						srcThumb="./assets/img/play.png" />
 				</BoxItem>
 			</FlexItem>

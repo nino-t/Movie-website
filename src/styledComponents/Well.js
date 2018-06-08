@@ -7,13 +7,14 @@ import {
 	SCOPE_TEXT_COLOR,
 	WELL_PADDING,
 	FONT_PRIMARY_COLOR,
-	PARAGRAPH_FONT_SIZE
+	PARAGRAPH_FONT_SIZE,
+	BORDER_RADIUS
 } from './config'
 
 const Container = styled.div`
 	box-shadow: ${ELEVATION_COLOR};
 	font-size: ${PARAGRAPH_FONT_SIZE};
-	border-radius: 3px;
+	border-radius: ${BORDER_RADIUS};
 	overflow: hidden;
 `;
 

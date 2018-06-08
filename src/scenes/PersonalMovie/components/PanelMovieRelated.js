@@ -1,6 +1,6 @@
 import React from 'react'
-
-import { Well, Link, TitleOfContent, Box, TableOnBody } from '../styledComponents'
+import { ProgressiveSingle } from '../../../hoc'
+import { Well, Link, TitleOfContent, Box, TableOnBody, LoadingProgres } from '../../../styledComponents'
 
 export default class PanelMovieRelated extends React.Component {
 	constructor(props) {
@@ -25,8 +25,20 @@ export default class PanelMovieRelated extends React.Component {
 	}
 
 	renderDesc(desc){
+		if (!desc) {
+			return (
+				<span>
+					{
+						Array.apply(null, Array(5)).map((ar, index) => (
+							<LoadingProgres key={index} color='#ecf0f1' />
+						))
+					}
+				</span>
+			)
+		}
+
 		if (desc && desc.length > 1) {
-			desc = desc.substr(0, 185) + '...'
+			desc = desc.substr(0, 185) + '..'
 		}
 
 		return desc
@@ -36,14 +48,17 @@ export default class PanelMovieRelated extends React.Component {
 		const { movie } = this.state
 
 		return (
-			<div>
-				<div className="wt-line">
-					<p>{ this.renderDesc(movie.opening_crawl) }</p>					
-					<br />
-					<Link href="#" linkRight>See More</Link>
-					<div style={{ clear:'both' }}></div>
-				</div>
-			</div>			
+			<div className="wt-line">
+				<p>{ this.renderDesc(movie.opening_crawl) }</p>					
+				<br />
+				{
+					(movie.opening_crawl) ?
+						<Link href="#" linkRight>See More</Link>
+						:
+						<LoadingProgres small color='#ecf0f1' />
+				}
+				<div style={{ clear:'both' }}></div>
+			</div>
 		)
 	}
 
@@ -52,15 +67,15 @@ export default class PanelMovieRelated extends React.Component {
 		const dataTable = [
 			{
 				name: 'Director',
-				value: movie.director
+				value: ProgressiveSingle(movie.director, 'rgba(52, 73, 94, 0.4)')
 			},
 			{
 				name: 'Producer',
-				value: movie.producer
+				value: ProgressiveSingle(movie.producer, 'rgba(52, 73, 94, 0.4)')
 			},			
 			{
 				name: 'Relase Date',
-				value: movie.release_date
+				value: ProgressiveSingle(movie.release_date, 'rgba(52, 73, 94, 0.4)')
 			}			
 		]
 
@@ -80,13 +95,9 @@ export default class PanelMovieRelated extends React.Component {
 				<TitleOfContent
 					paddingBottom="0px"
 				 	title="Related Another Movie's" />
-				 	
-				{
-					(movie) && 
-						 <Well 
-							WrapUp={this.renderWrapUp()}
-							WrapDown={this.renderWrapDown()} />
-				}
+					<Well 
+						WrapUp={this.renderWrapUp()}
+						WrapDown={this.renderWrapDown()} />
 			</div>
 		)
 	}
