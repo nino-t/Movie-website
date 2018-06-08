@@ -35,6 +35,10 @@ export const FlexItem = styled.div`
 
 export const Box = styled.div`
 	padding: 15px 10px;
+
+	${props => props.padding && css`
+		padding: ${props.padding};
+	`}
 `;
 
 const renderPaddingLeft = index => {
@@ -65,6 +69,15 @@ export const BoxItem = styled.div`
 		padding-right: 0px;
 		padding-left: 0px;
 	}	
+
+	${props => props.clearPadding && css`
+		padding-right: 0px;
+	`}
+
+	${props => props.desktopResponsive && css`
+		padding-right: ${props => renderPaddingRight(props.index)};
+		padding-left: ${props => renderPaddingLeft(props.index)};
+	`}	
 
 	${props => props.responsive && css`
 		@media (max-width: 700px) {

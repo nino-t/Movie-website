@@ -13,7 +13,7 @@ import {
 const WrapTitle = styled.div`
 	border-left: 5px solid ${SECONDARY_COLOR}
 	padding: 3px 15px;
-	margin-bottom: 25px;
+	margin-bottom: ${props => props.marginBottom};
 `;
 
 const TextTitle = styled.h3`
@@ -30,11 +30,18 @@ const TextTitleContent = styled.h4`
 	font-weight: bold;
 `;
 
-export const Title = (props) => (
-	<WrapTitle>
-		<TextTitle>{props.title}</TextTitle>
-	</WrapTitle>
-)
+export const Title = (props) => {
+	let marginBottom = '25px'
+	if (props.marginBottom) {
+		marginBottom = props.marginBottom
+	}
+
+	return (
+		<WrapTitle marginBottom={marginBottom}>
+			<TextTitle>{props.title}</TextTitle>
+		</WrapTitle>
+	)
+}
 
 export const TitleOfContent = (props) => (
 	<div style={{ marginBottom: '10px' }}>

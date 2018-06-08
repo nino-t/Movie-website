@@ -80,6 +80,16 @@ export default class MovieItem extends React.Component {
 		)
 	}	
 
+	getPrimaryId(url){
+		if (url) {
+			url = url.split('/')
+
+			if (url[url.length - 2]) {
+				return url[url.length - 2]
+			}
+		}
+	}
+
 	render() {
 		const { movie } = this.state
 		const { index } = this.props
@@ -93,7 +103,8 @@ export default class MovieItem extends React.Component {
 						contentBottom={this.renderRelase(movie.release_date)}
 						backgroundColor={this.renderBackground(index, movie.title)}
 						backgroundColorHover={this.renderBackgroundHover(index)}
-						srcThumb="./assets/img/play.png" />
+						srcThumb="./assets/img/play.png"
+						url={"/movie/" + this.getPrimaryId(movie.url)} />
 				</BoxItem>
 			</FlexItem>
 		);

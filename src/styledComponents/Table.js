@@ -11,7 +11,7 @@ export const TableOnBody = props => (
 			{
 				props.content.map((item, index) => (
 					<tr key={index}>
-						<Td width="100" paddingBottom={props.paddingBottom} style={{ verticalAlign:'text-top' }}>{item.name} :</Td>
+						<Td width="150" paddingBottom={props.paddingBottom} style={{ verticalAlign:'text-top' }}>{item.name} :</Td>
 						<Td style={{ textTransform: 'capitalize' }} paddingBottom={props.paddingBottom}>
 							{item.value}
 						</Td>

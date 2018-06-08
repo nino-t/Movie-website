@@ -1,5 +1,6 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
+import { Link } from "react-router-dom";
 
 import {
 	ELEVATION_COLOR,
@@ -49,6 +50,11 @@ export const LoadingProgres = styled.span`
 	margin-bottom: 15px;
 	display: block;
 
+	${props => props.medium && css`
+		width: 30% !important;
+		height: 10px;
+	`}	
+
 	${props => props.small && css`
 		width: 30% !important;
 		float: right;
@@ -61,22 +67,22 @@ export const LoadingProgres = styled.span`
 
 export const ContentItem = (props) => (
 	<ContainerItem>
-		<WrapThumb 
-			backgroundColor={props.backgroundColor}
-			backgroundColorHover={props.backgroundColorHover}>
-			<a href="">
-				<img src={props.srcThumb} />
-			</a>
-		</WrapThumb>
+		<Link to={props.url}>
+			<WrapThumb 
+				backgroundColor={props.backgroundColor}
+				backgroundColorHover={props.backgroundColorHover}>
+					<img src={props.srcThumb} />
+			</WrapThumb>
+		</Link>
 		<WrapContentItem>
 			<WrapContent>
 				{
 					(props.title) ?
-						<a href="">
+						<Link to={props.url}>
 							<h4 style={{ color: PRIMARY_cOLOR, fontSize: '17px'}}>
 								{props.title}
 							</h4>
-						</a>
+						</Link>
 						:
 						<LoadingProgres color='#ecf0f1' />
 				}

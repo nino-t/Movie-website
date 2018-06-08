@@ -11,7 +11,7 @@ export const TITLE_FONT_SIZE = '30px'
 export const TITLE_CONTENT_FONT_SIZE = '23px'
 export const PARAGRAPH_FONT_SIZE = '14px'
 
-export const WELL_PADDING = '15px 10px'
+export const WELL_PADDING = '15px 15px'
 export const WRAP_CONTENT_ITEM_PADDING = '15px 12px'
 
 export const LINK_COLOR = '#3498db'

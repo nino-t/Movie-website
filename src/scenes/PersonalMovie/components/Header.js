@@ -1,5 +1,5 @@
 import React from 'react'
-import { Title, Well, Flex, FlexItem, Image, TableOnBody, Box } from '../../../styledComponents'
+import { Title, Well, Flex, FlexItem, Image, TableOnBody, Box, LoadingProgres } from '../../../styledComponents'
 
 export default class Header extends React.Component {
 	renderPersonalImg(){
@@ -53,9 +53,17 @@ export default class Header extends React.Component {
 				{this.renderPersonalImg()}
 				<FlexItem md={13} sm="70%" xs="70%">
 					<Box>
-						<TableOnBody
-							paddingBottom="8px"
-							content={dataTable} />
+						{
+							(people.height) ?
+								<TableOnBody
+									paddingBottom="8px"
+									content={dataTable} />
+								:
+								Array.apply(null, Array(6)).map((item, index) => (
+									<LoadingProgres key={index} medium color="#ced6e0" />
+								))
+
+						}
 					</Box>
 				</FlexItem>
 			</Flex>
