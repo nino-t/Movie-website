@@ -19,6 +19,7 @@ const WrapTitle = styled.div`
 const TextTitle = styled.h3`
 	color: ${PRIMARY_cOLOR};
 	font-size: ${TITLE_FONT_SIZE};
+	font-weight: bold;
 `;
 
 const TextTitleContent = styled.h4`
@@ -26,6 +27,7 @@ const TextTitleContent = styled.h4`
 	font-size: ${TITLE_CONTENT_FONT_SIZE};
 	float: left;
 	text-transform: 'capitalize';
+	font-weight: bold;
 `;
 
 export const Title = (props) => (

@@ -13,6 +13,8 @@ import {
 const Container = styled.div`
 	box-shadow: ${ELEVATION_COLOR};
 	font-size: ${PARAGRAPH_FONT_SIZE};
+	border-radius: 3px;
+	overflow: hidden;
 `;
 
 const WrapUp = styled.div`

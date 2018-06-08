@@ -25,7 +25,7 @@ export default class MovieItem extends React.Component {
 
 	renderTitle(title){
 		if (title && title.length > 1) {
-			title = title.substr(0, 20) + '...'
+			title = title.substr(0, 18) + '...'
 		}
 
 		return title
