@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import {
 	PRIMARY_cOLOR,
@@ -7,14 +7,39 @@ import {
 	SCOPE_TEXT_COLOR,
 	WELL_PADDING,
 	FONT_PRIMARY_COLOR,
-	PARAGRAPH_FONT_SIZE
+	PARAGRAPH_FONT_SIZE,
+	BORDER_RADIUS
 } from './config'
 
 const Container = styled.div`
 	box-shadow: ${ELEVATION_COLOR};
 	font-size: ${PARAGRAPH_FONT_SIZE};
-	border-radius: 3px;
+	border-radius: ${BORDER_RADIUS};
 	overflow: hidden;
+
+	${props => props.marginBottom && css`
+		margin-bottom: ${props => props.marginBottom};
+	`}	
+
+	${props => props.height && css`
+		height: ${props => props.height};
+	`}		
+
+	${props => props.display && css`
+		display: ${props => props.display};
+	`}			
+
+	${props => props.flexDirection && css`
+		flex-direction: ${props => props.flexDirection};
+	`}			
+
+	${props => props.alignItems && css`
+		align-items: ${props => props.alignItems};
+	`}				
+
+	${props => props.padding && css`
+		padding: ${props => props.padding};
+	`}					
 `;
 
 const WrapUp = styled.div`
@@ -44,5 +69,33 @@ export const Well = (props) => (
 				{props.WrapDown}
 			</WrapDown>
 		}
+	</Container>
+)
+
+const Title = styled.a`
+	color: #2c3e50;
+	font-weight: bold;
+	font-size: 15px;
+
+	&:hover{
+		color: #2d3436;
+	}
+`;
+
+export const WellItem = (props) => (
+	<Container 
+		marginBottom="20px" 
+		height="70px"
+		flexDirection="row"		
+		display='flex'
+		alignItems='center'
+		padding='10px'>
+		<div style={{ padding: '10px', paddingRight: '15px' }}>
+			<img src={props.thumb} width="30" />
+		</div>
+		<div>
+			<Title href={props.href} style={{ fontSize: '15px' }}>{props.title}</Title>
+			<p style={{ fontSize: '13px' }}>{props.desc}</p>
+		</div>								 					
 	</Container>
 )

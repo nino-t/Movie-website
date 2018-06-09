@@ -1,17 +1,18 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import {
 	ELEVATION_COLOR,
 	WRAP_CONTENT_ITEM_PADDING,
 	FONT_PRIMARY_COLOR,
 	PRIMARY_cOLOR,
-	PARAGRAPH_FONT_SIZE
+	PARAGRAPH_FONT_SIZE,
+	BORDER_RADIUS
 } from './config'
 
 const ContainerItem = styled.div`
 	box-shadow: ${ELEVATION_COLOR};
-	border-radius: 3px;
+	border-radius: ${BORDER_RADIUS};
 	overflow: hidden;
 	margin-bottom: 20px;
 `;
@@ -22,6 +23,12 @@ const WrapThumb = styled.div`
 	justify-content: center;
 	align-items: center;
 	display: flex;	
+	cursor: pointer;
+	transition: 0.5s;
+
+	&:hover {
+	    background-color: ${props => props.backgroundColorHover};
+	}	
 `;
 
 const WrapContentItem = styled.div`
@@ -33,17 +40,57 @@ const WrapContent = styled.div`
 	color: ${FONT_PRIMARY_COLOR};
 	font-size: ${PARAGRAPH_FONT_SIZE};
 	height: 40px;
+
+	@media (max-width: 700px) {
+		& h4{
+			font-size: 16px !important;
+		}
+	}
 `;
 
+export const LoadingProgres = styled.span`
+	width: 100%;
+	height: 20px;
+	background-color: ${props => props.color};
+	margin-bottom: 15px;
+	display: block;
+
+	${props => props.medium && css`
+		width: 30% !important;
+		height: 10px;
+	`}	
+
+	${props => props.small && css`
+		width: 30% !important;
+		float: right;
+
+		&:after {
+			clear: both;
+		}
+	`}	
+`;
 
 export const ContentItem = (props) => (
 	<ContainerItem>
-		<WrapThumb backgroundColor={props.backgroundColor}>
-			<img src={props.srcThumb} />
-		</WrapThumb>
+		<a href={props.url}>
+			<WrapThumb 
+				backgroundColor={props.backgroundColor}
+				backgroundColorHover={props.backgroundColorHover}>
+					<img src={props.srcThumb} />
+			</WrapThumb>
+		</a>
 		<WrapContentItem>
 			<WrapContent>
-				<h4 style={{ color: PRIMARY_cOLOR, fontSize: '17px'}}>{props.title}</h4>
+				{
+					(props.title) ?
+						<a href={props.url}>
+							<h4 style={{ color: PRIMARY_cOLOR, fontSize: '17px'}}>
+								{props.title}
+							</h4>
+						</a>
+						:
+						<LoadingProgres color='#ecf0f1' />
+				}
 			</WrapContent>
 			<WrapContent>
 				{props.contentCenter}
