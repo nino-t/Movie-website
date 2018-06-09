@@ -10,6 +10,16 @@ const Container = styled.div`
 	}	
 `;
 
+const ContainerSingle = styled.div`
+	background-color: #ffaf05;
+	height: 250px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	border-radius:3px;
+`;
+
 export const Image = (props) => (
 	<Container 
 		paddingVertical={props.paddingVertical}
@@ -20,4 +30,12 @@ export const Image = (props) => (
 			<img src={props.src} />
 		</center>
 	</Container>
+)
+
+export const ImageSingle = (props) => (
+	<ContainerSingle>
+		<center>
+			<img src={props.src} />
+		</center>
+	</ContainerSingle>
 )

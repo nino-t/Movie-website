@@ -3,6 +3,14 @@ Movie website created using react, webpack, babel and open API https://swapi.co/
 <br>
 ![alt text](https://github.com/nino-t/Movie-website/blob/master/demo/demo.png)
 
+### Todo
+- [x] ~~Create your own framework~~
+- [x] ~~Optimize and Efficiently code~~  
+- [x] ~~Request data from API~~  
+- [x] ~~Used Javascript Framework (React JS)~~  
+- [x] ~~Use Automated Build Tools (Webpack to bundle Modules)~~  
+- [x] ~~Responsive Website~~
+
 ### Installing
 
 A step by step series of examples that tell you how to get a development env running

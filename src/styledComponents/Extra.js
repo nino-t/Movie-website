@@ -17,4 +17,8 @@ export const Link = styled.a`
 	&:hover {
 	    color: ${LINK_HOVER_COLOR};
 	}	
+
+	@media (max-width: 700px) {
+		font-size: 15px;
+	}	
 `;
