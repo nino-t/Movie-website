@@ -91,13 +91,14 @@ export default class PanelMovieRelated extends React.Component {
 	render() {
 		const { movie } = this.state
 		return (
-			<div style={{ margin: '1px' }}>
+			<div className="area-content" style={{ margin: '1px' }}>
 				<TitleOfContent
 					paddingBottom="0px"
 				 	title="Related Another Movie's" />
-					<Well 
-						WrapUp={this.renderWrapUp()}
-						WrapDown={this.renderWrapDown()} />
+
+				<Well 
+					WrapUp={this.renderWrapUp()}
+					WrapDown={this.renderWrapDown()} />
 			</div>
 		)
 	}

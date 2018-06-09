@@ -6,11 +6,13 @@ export default class Header extends React.Component {
 		return (
 			<FlexItem md={2} sm="20%" xs="30%">
 				<Box>
-					<Image 
-						src="./assets/img/personal.png" 
-						paddingVertical="60px"
-						paddingHorizontal="0px"
-						backgroundColor= '#576574' />
+					<div style={{ borderRadius: '2px', overflow:'hidden' }}>
+						<Image 
+							src="http://localhost:3000/assets/img/personal.png" 
+							paddingVertical="60px"
+							paddingHorizontal="0px"
+							backgroundColor= '#576574' />
+					</div>
 				</Box>
 			</FlexItem>			
 		)

@@ -8,7 +8,11 @@ export const FONT_PRIMARY_COLOR = '#7f8c8d'
 export const ELEVATION_COLOR = '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)'
 
 export const TITLE_FONT_SIZE = '30px'
+export const TITLE_FONT_SIZE_XS = '25px'
+
 export const TITLE_CONTENT_FONT_SIZE = '23px'
+export const TITLE_CONTENT_FONT_SIZE_XS = '21px'
+
 export const PARAGRAPH_FONT_SIZE = '14px'
 
 export const WELL_PADDING = '15px 15px'

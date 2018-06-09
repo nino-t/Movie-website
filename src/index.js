@@ -12,6 +12,7 @@ class App extends React.Component {
 				<div>
 			      <Route exact path="/" component={PersonalMovie} />
 			      <Route path="/movie/:movieId" component={Movie} />
+			      <Route path="/person/:personId" component={PersonalMovie} />
 		      	</div>
 			</Router>
 		)

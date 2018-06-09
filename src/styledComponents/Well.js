@@ -72,6 +72,16 @@ export const Well = (props) => (
 	</Container>
 )
 
+const Title = styled.a`
+	color: #2c3e50;
+	font-weight: bold;
+	font-size: 15px;
+
+	&:hover{
+		color: #2d3436;
+	}
+`;
+
 export const WellItem = (props) => (
 	<Container 
 		marginBottom="20px" 
@@ -84,8 +94,8 @@ export const WellItem = (props) => (
 			<img src={props.thumb} width="30" />
 		</div>
 		<div>
-			<strong style={{ fontSize: '15px' }}>{props.title}</strong>
-			<p style={{ fontSize: '14px' }}>{props.desc}</p>
+			<Title href={props.href} style={{ fontSize: '15px' }}>{props.title}</Title>
+			<p style={{ fontSize: '13px' }}>{props.desc}</p>
 		</div>								 					
 	</Container>
 )

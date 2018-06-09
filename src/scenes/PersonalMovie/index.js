@@ -1,8 +1,8 @@
 import React from 'react'
-import { Container, Flex, FlexItem } from '../../styledComponents'
+import { Container, Flex, FlexItem, LoadingProgres } from '../../styledComponents'
 
 import Header from './components/Header'
-import PanelMovie from './components/PanelMovie'
+import MovieGroup from '../../components/MovieGroup'
 import PanelMovieRelated from './components/PanelMovieRelated'
 
 export default class PersonalMovie extends React.Component {
@@ -15,7 +15,14 @@ export default class PersonalMovie extends React.Component {
 	}
 
 	componentWillMount() {
-		fetch('https://swapi.co/api/people/1/')
+		let URI = 'https://swapi.co/api/people/1/'
+
+		const { match } = this.props
+		if (match.params.personId) {
+			URI = 'https://swapi.co/api/people/'+match.params.personId+'/'
+		}
+
+		fetch(URI)
 	    .then((response) => response.json())
 	    .then((data) => {
 	    	this.setState({
@@ -27,22 +34,49 @@ export default class PersonalMovie extends React.Component {
 	    })
 	}	
 
-	render() {
+	getLastName(personalName){
+		if (personalName){
+			let name = personalName.split(" ")
+			let resultName = name[0]
+
+			if (name[name.length - 1]) {
+				resultName = name[name.length - 1]
+			}
+
+			return resultName
+		}
+	}	
+
+	render() { 
 		const { people } = this.state
 		return (
 			<Container>
 				<Header people={people} /> 				
 				<Flex>
-					<FlexItem md={9} sm="50%" xs="100%">
+					<FlexItem md="69%" sm="50%" xs="100%">
 						<div className="md-padding">
-							<PanelMovie personalName={people.name} movies={people.films} />
+							{
+								(people.name) ?
+									<MovieGroup
+										limit={4}
+										title={this.getLastName(people.name) +" Movie's"}
+										movies={people.films} />	    
+									:
+									Array.apply(null, Array(7)).map((ar, index) => (
+										<LoadingProgres key={index} color='#ecf0f1' /> 
+									))
+							}
 						</div>
 					</FlexItem>
 
-					<FlexItem md={3} sm="50%" xs="100%">
+					<FlexItem md="31%" sm="50%" xs="100%" SmPushSmallLeft>
 						{
-							(people.films) &&
-							<PanelMovieRelated movie={people.films[people.films.length - 1]} />
+							(people.films) ?
+								<PanelMovieRelated movie={people.films[people.films.length - 1]} />
+								:
+								Array.apply(null, Array(7)).map((ar, index) => (
+									<LoadingProgres key={index} color='#ecf0f1' />
+								))
 						}
 					</FlexItem>
 				</Flex>

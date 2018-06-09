@@ -1,6 +1,6 @@
 import React from 'react'
-import { ProgressiveSingle } from '../../../hoc'
-import { ContentItem, FlexItem, BoxItem } from '../../../styledComponents'
+import { ProgressiveSingle } from '../hoc'
+import { ContentItem, FlexItem, BoxItem } from '../styledComponents'
 
 export default class MovieItem extends React.Component {
 	constructor(props) {
@@ -11,18 +11,33 @@ export default class MovieItem extends React.Component {
 	  }
 	}
 
+	callAjax(key, URI){
+		fetch(URI)
+	    .then((response) => response.json())
+	    .then((data) => {
+	    	this.setState({
+	    		[key]: data
+	    	})
+	    })
+	    .catch((error) => {
+	    	console.error('Error', error);
+	    })
+	}
+
+	componentWillMount() {
+		const { movie } = this.props
+		if (movie.title) {
+			this.setState({
+				movie: movie
+			})
+		}else{
+			this.callAjax('movie', movie)
+		}
+	}
+
 	componentWillReceiveProps(nextProps) {
-		if (nextProps.movie) {
-			fetch(nextProps.movie)
-		    .then((response) => response.json())
-		    .then((data) => {
-		    	this.setState({
-		    		movie: data
-		    	})
-		    })
-		    .catch((error) => {
-		    	console.error('Error', error);
-		    })
+		if (!nextProps.movie.title) {
+			this.callAjax('movie', nextProps.movie)
 		}
 
 		return true;
@@ -90,12 +105,22 @@ export default class MovieItem extends React.Component {
 		}
 	}
 
+	renderRowItem(index){
+		let width = '25%'
+		let result = index % 4
+		if (result == 0) {
+			width = '23%';
+		}
+
+		return width
+	}
+
 	render() {
 		const { movie } = this.state
 		const { index } = this.props
 
 		return (
-			<FlexItem md={1} sm="50%" xs="50%">
+			<FlexItem md={this.renderRowItem(index)} sm="50%" xs="50%">
 				<BoxItem index={index} responsive>
 					<ContentItem
 						title={this.renderTitle(movie.title)}
@@ -103,7 +128,7 @@ export default class MovieItem extends React.Component {
 						contentBottom={this.renderRelase(movie.release_date)}
 						backgroundColor={this.renderBackground(index, movie.title)}
 						backgroundColorHover={this.renderBackgroundHover(index)}
-						srcThumb="./assets/img/play.png"
+						srcThumb="http://localhost:3000/assets/img/play.png"
 						url={"/movie/" + this.getPrimaryId(movie.url)} />
 				</BoxItem>
 			</FlexItem>
